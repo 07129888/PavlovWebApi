@@ -5,9 +5,9 @@
     <Version>0.0.1-rc.1</Version>
     <Authors>A. Miroshnikova, A. Vinogradova</Authors>
     <Company>NASU AFTF ASU</Company>
-    <Product>Lab 2</Product>
+    <Product>Lab3</Product>
     <PackageId>MyApp</PackageId>
-    <FileVersion>0.0.1</FileVersion>
+    <FileVersion>0.0.3-rc.1</FileVersion>
   </PropertyGroup>
 
 
