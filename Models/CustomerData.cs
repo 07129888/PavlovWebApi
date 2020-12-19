@@ -7,6 +7,7 @@ namespace PavlovWebApi.Models
 {
     public class CustomerData
     {
+        public Guid Id { get; set; } = Guid.Empty;
         public string Name { get; set; } // Имя клиента
         public string Surname { get; set; } // Фамилия
         public bool Gender { get; set; } // Пол, 0 - Ж, 1 - М
