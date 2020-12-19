@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>0.0.1-rc.1</Version>
+    <Version>0.0.3-rc.1</Version>
     <Authors>A. Miroshnikova, A. Vinogradova</Authors>
     <Company>NASU AFTF ASU</Company>
     <Product>Lab3</Product>
