@@ -10,7 +10,7 @@ namespace PavlovWebApi.Models
         public Guid Id { get; set; } = Guid.Empty;
         public string Name { get; set; } // Имя клиента
         public string Surname { get; set; } // Фамилия
-        public bool Gender { get; set; } // Пол, 0 - Ж, 1 - М
+        public int Age { get; set; } // Возраст
         public DateTime VisitDate { get; set; } // Дата и время визита
         public string Service { get; set; } // Услуга
         public int Cost { get; set; } // Стоимость
@@ -18,7 +18,7 @@ namespace PavlovWebApi.Models
         public BaseModelValidationResult Validate()
         {
             var validationResult = new BaseModelValidationResult();
-
+            if(Age > 100 || Age < 18) validationResult.Append($"Некорректно указан возраст");
             if (string.IsNullOrWhiteSpace(Name)) validationResult.Append($"Имя не может быть пустым");
             if (string.IsNullOrWhiteSpace(Surname)) validationResult.Append($"Фамилия не может быть пустой");
             if((DateTime.Now-VisitDate).TotalDays > 180) validationResult.Append($"Слишком давняя дата (более 6 месяцев назад)");
@@ -33,7 +33,7 @@ namespace PavlovWebApi.Models
 
         public override string ToString()
         {
-            return $"{Name} {Surname}, {Gender}, {Phone}. {VisitDate}: {Service}, {Cost}";
+            return $"{Name} {Surname}, {Age}, {Phone}. {VisitDate}: {Service}, {Cost}";
         }
 
     }
