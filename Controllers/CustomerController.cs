@@ -13,7 +13,13 @@ namespace PavlovWebApi.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private static IStorage<CustomerData> _memCache = new MemCache();
+        private IStorage<CustomerData> _memCache;
+        public CustomerController(IStorage<CustomerData> memCache)
+        {
+            _memCache = memCache;
+
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<CustomerData>> Get()
         {
