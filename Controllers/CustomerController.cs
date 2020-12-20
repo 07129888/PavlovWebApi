@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PavlovWebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using PavlovWebApi.Storage;
+using Serilog;
 
 namespace PavlovWebApi.Controllers
 {
@@ -17,7 +18,6 @@ namespace PavlovWebApi.Controllers
         public CustomerController(IStorage<CustomerData> memCache)
         {
             _memCache = memCache;
-
         }
 
         [HttpGet]
@@ -38,7 +38,11 @@ namespace PavlovWebApi.Controllers
         public IActionResult Post([FromBody] CustomerData value)
         {
             var validationResult = value.Validate();
-            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
+            if (!validationResult.IsValid)
+            {
+                Log.Error($"Ошибка добавления объекта {value.ToString()}, {validationResult.Errors}");
+                return BadRequest(validationResult.Errors);
+            }
             _memCache.Add(value);
             return Ok($"{value.ToString()} добавлено");
         }
@@ -49,7 +53,11 @@ namespace PavlovWebApi.Controllers
         {
             if (!_memCache.Has(id)) return NotFound("Неизвестный клиент");
             var validationResult = value.Validate();
-            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
+            if (!validationResult.IsValid)
+            {
+                Log.Error($"Ошибка изменения объекта по id {id} на {value.ToString()}, {validationResult.Errors}");
+                return BadRequest(validationResult.Errors);
+            }
             var previousValue = _memCache[id];
             _memCache[id] = value;
             return Ok($"{previousValue.ToString()} обновлено до {value.ToString()}");
