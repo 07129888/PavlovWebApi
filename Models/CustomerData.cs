@@ -9,7 +9,7 @@ namespace PavlovWebApi.Models
     {
         public Guid Id { get; set; } = Guid.Empty;
         public string Name { get; set; } // Имя клиента
-        public string Surname { get; set; } // Фамилия
+        public string Surename { get; set; } // Фамилия
         public int Age { get; set; } // Возраст
         public DateTime VisitDate { get; set; } // Дата и время визита
         public string Service { get; set; } // Услуга
@@ -20,10 +20,10 @@ namespace PavlovWebApi.Models
             var validationResult = new BaseModelValidationResult();
             if(Age > 100 || Age < 18) validationResult.Append($"Некорректно указан возраст");
             if (string.IsNullOrWhiteSpace(Name)) validationResult.Append($"Имя не может быть пустым");
-            if (string.IsNullOrWhiteSpace(Surname)) validationResult.Append($"Фамилия не может быть пустой");
+            if (string.IsNullOrWhiteSpace(Surename)) validationResult.Append($"Фамилия не может быть пустой");
             if((DateTime.Now-VisitDate).TotalDays > 180) validationResult.Append($"Слишком давняя дата (более 6 месяцев назад)");
             if (!string.IsNullOrEmpty(Name) && !char.IsUpper(Name.FirstOrDefault())) validationResult.Append($"Имя {Name} должно начинаться с большой буквы");
-            if (!string.IsNullOrEmpty(Surname) && !char.IsUpper(Surname.FirstOrDefault())) validationResult.Append($"Фамилия {Surname} Должна начинаться с большой буквы");
+            if (!string.IsNullOrEmpty(Surename) && !char.IsUpper(Surename.FirstOrDefault())) validationResult.Append($"Фамилия {Surename} Должна начинаться с большой буквы");
             if (string.IsNullOrWhiteSpace(Service)) validationResult.Append($"Информация об оказанной услуге не может быть пустой");
             if (Phone.Length != 11) validationResult.Append($"Телефон {Phone} должен содержать 11 символов, например 79993334455");
 
@@ -33,7 +33,7 @@ namespace PavlovWebApi.Models
 
         public override string ToString()
         {
-            return $"{Name} {Surname}, {Age}, {Phone}. {VisitDate}: {Service}, {Cost}";
+            return $"{Name} {Surename}, {Age}, {Phone}. {VisitDate}: {Service}, {Cost}";
         }
 
     }
