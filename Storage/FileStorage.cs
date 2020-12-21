@@ -26,9 +26,11 @@ namespace PavlovWebApi.Storage
             if (File.Exists(FileName))
             {
                 var allLines = File.ReadAllText(FileName);
+
                 try
                 {
                     var deserialized = JsonConvert.DeserializeObject<List<CustomerData>>(allLines);
+
                     if (deserialized != null)
                     {
                         foreach (var labData in deserialized)
@@ -44,9 +46,12 @@ namespace PavlovWebApi.Storage
             }
         }
 
+        public string StorageType => $"{nameof(FileStorage)}";
+
         private void Flush()
         {
             var serializedContents = JsonConvert.SerializeObject(All);
+
             File.WriteAllText(FileName, serializedContents);
         }
     }
