@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <Authors>A. Miroshnikova, A. Vinogradova</Authors>
     <Company>NASU AFTF ASU</Company>
-    <Product>Lab5</Product>
+    <Product>Lab 7</Product>
     <PackageId>MyApp</PackageId>
   </PropertyGroup>
 
